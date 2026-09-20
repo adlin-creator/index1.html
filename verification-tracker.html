@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verification Tracker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .tracker-box {
+            width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .step.completed .circle {
+            background: #28a745;
+            color: white;
+        }
+
+        .step.active .circle {
+            background: #2196f3;
+            color: white;
+        }
+
+        .step.pending .circle {
+            background: #ddd;
+            color: #777;
+        }
+
+        .step-content {
+            margin-left: 15px;
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .status {
+            font-size: 13px;
+            margin-top: 4px;
+            color: #777;
+        }
+
+        .step.completed .status {
+            color: #28a745;
+        }
+
+        .step.active .status {
+            color: #2196f3;
+        }
+
+        .line {
+            position: absolute;
+            left: 17px;
+            top: 35px;
+            width: 3px;
+            height: 35px;
+            background: #ddd;
+        }
+
+        .step.completed .line {
+            background: #28a745;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #2196f3;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1976d2;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="tracker-box">
+
+    <h2>📊 Verification Tracker</h2>
+
+    <div class="step completed">
+        <div class="circle">✓</div>
+        <div class="step-content">
+            <div class="step-title">Application Submitted</div>
+            <div class="status">Completed</div>
+        </div>
+        <div class="line"></div>
+    </div>
+
+    <div class="step completed">
+        <div class="circle">✓</div>
+        <div class="step-content">
+            <div class="step-title">Institute Verification</div>
+            <div class="status">Completed</div>
+        </div>
+        <div class="line"></div>
+    </div>
+
+    <div class="step active">
+        <div class="circle">🔄</div>
+        <div class="step-content">
+            <div class="step-title">Authority Verification</div>
+            <div class="status">In Progress</div>
+        </div>
+        <div class="line"></div>
+    </div>
+
+    <div class="step pending">
+        <div class="circle">4</div>
+        <div class="step-content">
+            <div class="step-title">Final Decision</div>
+            <div class="status">Pending</div>
+        </div>
+    </div>
+
+    <button onclick="nextStage()">Move to Next Stage</button>
+
+</div>
+
+
+<script>
+
+    let currentStage = 2;
+
+    function nextStage() {
+
+        const steps = document.querySelectorAll(".step");
+
+        if (currentStage < steps.length) {
+
+            steps[currentStage - 1].classList.remove("active");
+            steps[currentStage - 1].classList.add("completed");
+
+            steps[currentStage - 1].querySelector(".circle").innerHTML = "✓";
+            steps[currentStage - 1].querySelector(".status").innerHTML = "Completed";
+
+            if (currentStage < steps.length) {
+
+                steps[currentStage].classList.remove("pending");
+                steps[currentStage].classList.add("active");
+
+                steps[currentStage].querySelector(".circle").innerHTML = "🔄";
+                steps[currentStage].querySelector(".status").innerHTML = "In Progress";
+            }
+
+            currentStage++;
+        }
+
+        if (currentStage > steps.length) {
+            document.querySelector("button").innerHTML = "Verification Completed";
+            document.querySelector("button").disabled = true;
+        }
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartScholar - My Documents</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f8f4;
+            color: #222;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #176b3a;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        header p {
+            margin: 7px 0 0;
+            font-size: 14px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            padding: 25px 20px;
+        }
+
+        /* TITLE */
+
+        .title-box {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .title-box h2 {
+            margin-top: 0;
+            color: #176b3a;
+        }
+
+        .title-box p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* DOCUMENT CARD */
+
+        .document-card {
+            background: white;
+            padding: 18px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .document-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .document-icon {
+            font-size: 30px;
+        }
+
+        .document-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .document-status {
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* STATUS */
+
+        .available {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .update {
+            color: #d98b00;
+            font-weight: bold;
+        }
+
+        .missing {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        /* BUTTON */
+
+        .action-btn {
+            padding: 9px 14px;
+            border: none;
+            border-radius: 8px;
+            background: #176b3a;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .action-btn:hover {
+            background: #12582f;
+        }
+
+        /* BACK */
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #176b3a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .document-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="header-content">
+
+            <h1>🎓 SmartScholar</h1>
+
+            <p>
+                Smart Scholarship Assistance & Student Support
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <div class="container">
+
+        <!-- TITLE -->
+
+        <div class="title-box">
+
+            <h2>📁 My Documents</h2>
+
+            <p>
+                Your personal document vault. Check your uploaded
+                documents and update them whenever required.
+            </p>
+
+        </div>
+
+
+        <!-- MARKSHEET -->
+
+        <div class="document-card">
+
+            <div class="document-info">
+
+                <div class="document-icon">📄</div>
+
+                <div>
+
+                    <div class="document-name">
+                        Marksheet
+                    </div>
+
+                    <div class="document-status available">
+                        ✓ Available & Verified
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="action-btn"
+                onclick="viewDocument('Marksheet')">
+                View
+            </button>
+
+        </div>
+
+
+        <!-- INCOME CERTIFICATE -->
+
+        <div class="document-card">
+
+            <div class="document-info">
+
+                <div class="document-icon">📄</div>
+
+                <div>
+
+                    <div class="document-name">
+                        Income Certificate
+                    </div>
+
+                    <div class="document-status update">
+                        ⚠️ Needs Updating
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="action-btn"
+                onclick="updateDocument('Income Certificate')">
+                Update
+            </button>
+
+        </div>
+
+
+        <!-- COMMUNITY CERTIFICATE -->
+
+        <div class="document-card">
+
+            <div class="document-info">
+
+                <div class="document-icon">📄</div>
+
+                <div>
+
+                    <div class="document-name">
+                        Community Certificate
+                    </div>
+
+                    <div class="document-status available">
+                        ✓ Available & Verified
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="action-btn"
+                onclick="viewDocument('Community Certificate')">
+                View
+            </button>
+
+        </div>
+
+
+        <!-- BONAFIDE CERTIFICATE -->
+
+        <div class="document-card">
+
+            <div class="document-info">
+
+                <div class="document-icon">📄</div>
+
+                <div>
+
+                    <div class="document-name">
+                        Bonafide Certificate
+                    </div>
+
+                    <div class="document-status missing">
+                        ✕ Not Uploaded
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="action-btn"
+                onclick="updateDocument('Bonafide Certificate')">
+                Upload
+            </button>
+
+        </div>
+
+
+        <!-- BANK DOCUMENT -->
+
+        <div class="document-card">
+
+            <div class="document-info">
+
+                <div class="document-icon">📄</div>
+
+                <div>
+
+                    <div class="document-name">
+                        Bank Document
+                    </div>
+
+                    <div class="document-status available">
+                        ✓ Available & Verified
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="action-btn"
+                onclick="viewDocument('Bank Document')">
+                View
+            </button>
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <a href="student-home.html" class="back-btn">
+            ← Back to Home
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function viewDocument(documentName) {
+
+            alert(
+                documentName +
+                " is available in your document vault."
+            );
+
+        }
+
+
+        function updateDocument(documentName) {
+
+            alert(
+                "Please upload the updated " +
+                documentName +
+                "."
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

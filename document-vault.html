@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartScholar - Document Vault</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f8f4;
+            color: #222;
+        }
+
+        header {
+            background: #176b3a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 25px 25px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #176b3a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .intro {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .intro h2 {
+            color: #176b3a;
+            margin-top: 0;
+        }
+
+        .intro p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .document-card {
+            background: white;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .document-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .document-icon {
+            font-size: 32px;
+        }
+
+        .document-name {
+            flex: 1;
+        }
+
+        .document-name h3 {
+            margin: 0 0 6px;
+            color: #176b3a;
+        }
+
+        .document-name p {
+            margin: 0;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .not-uploaded {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .uploaded {
+            background: #dff4e5;
+            color: #176b3a;
+        }
+
+        .upload-area {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #fafafa;
+        }
+
+        .upload-btn {
+            margin-top: 10px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 9px;
+            background: #176b3a;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .upload-btn:hover {
+            background: #12582f;
+        }
+
+        .info-box {
+            background: #e8f5ec;
+            padding: 18px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .info-box h3 {
+            color: #176b3a;
+            margin-top: 0;
+        }
+
+        .info-box p {
+            color: #444;
+            line-height: 1.5;
+        }
+
+        @media(max-width:600px) {
+
+            .container {
+                padding: 15px;
+            }
+
+            .document-top {
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>🎓 SmartScholar</h1>
+
+        <p>My Personal Document Vault</p>
+
+    </header>
+
+
+    <div class="container">
+
+
+        <!-- BACK TO HOME -->
+
+        <a href="student-home.html" class="back-btn">
+            ← Back to Student Home
+        </a>
+
+
+        <!-- INTRODUCTION -->
+
+        <div class="intro">
+
+            <h2>📁 My Document Vault</h2>
+
+            <p>
+                Upload and manage the important documents required
+                for your scholarship applications.
+            </p>
+
+        </div>
+
+
+        <!-- AADHAAR -->
+
+        <div class="document-card">
+
+            <div class="document-top">
+
+                <div class="document-icon">🪪</div>
+
+                <div class="document-name">
+
+                    <h3>Aadhaar Card</h3>
+
+                    <p>Upload your Aadhaar document</p>
+
+                    <span
+                        id="status-aadhaar"
+                        class="status not-uploaded">
+
+                        ✕ Not Uploaded
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="aadhaar"
+                    accept=".pdf,.jpg,.jpeg,.png">
+
+                <button
+                    class="upload-btn"
+                    onclick="uploadDocument('aadhaar','status-aadhaar')">
+
+                    Upload Document
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- BANK ACCOUNT -->
+
+        <div class="document-card">
+
+            <div class="document-top">
+
+                <div class="document-icon">🏦</div>
+
+                <div class="document-name">
+
+                    <h3>Bank Account Document</h3>
+
+                    <p>Upload bank account supporting document</p>
+
+                    <span
+                        id="status-bank"
+                        class="status not-uploaded">
+
+                        ✕ Not Uploaded
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="bank"
+                    accept=".pdf,.jpg,.jpeg,.png">
+
+                <button
+                    class="upload-btn"
+                    onclick="uploadDocument('bank','status-bank')">
+
+                    Upload Document
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- 10TH MARKSHEET -->
+
+        <div class="document-card">
+
+            <div class="document-top">
+
+                <div class="document-icon">📄</div>
+
+                <div class="document-name">
+
+                    <h3>10th Mark Sheet</h3>
+
+                    <p>Upload your 10th standard marksheet</p>
+
+                    <span
+                        id="status-10th"
+                        class="status not-uploaded">
+
+                        ✕ Not Uploaded
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="10th"
+                    accept=".pdf,.jpg,.jpeg,.png">
+
+                <button
+                    class="upload-btn"
+                    onclick="uploadDocument('10th','status-10th')">
+
+                    Upload Document
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- 12TH MARKSHEET -->
+
+        <div class="document-card">
+
+            <div class="document-top">
+
+                <div class="document-icon">📄</div>
+
+                <div class="document-name">
+
+                    <h3>12th Mark Sheet</h3>
+
+                    <p>Upload your 12th standard marksheet</p>
+
+                    <span
+                        id="status-12th"
+                        class="status not-uploaded">
+
+                        ✕ Not Uploaded
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="12th"
+                    accept=".pdf,.jpg,.jpeg,.png">
+
+                <button
+                    class="upload-btn"
+                    onclick="uploadDocument('12th','status-12th')">
+
+                    Upload Document
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SMART CARD -->
+
+        <div class="document-card">
+
+            <div class="document-top">
+
+                <div class="document-icon">🎓</div>
+
+                <div class="document-name">
+
+                    <h3>Smart Card</h3>
+
+                    <p>Upload your student smart card</p>
+
+                    <span
+                        id="status-smart"
+                        class="status not-uploaded">
+
+                        ✕ Not Uploaded
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="smart"
+                    accept=".pdf,.jpg,.jpeg,.png">
+
+                <button
+                    class="upload-btn"
+                    onclick="uploadDocument('smart','status-smart')">
+
+                    Upload Document
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- BIRTH CERTIFICATE -->
+
+        <div class="document-card">
+
+            <div class="document-top">
+
+                <div class="document-icon">🎂</div>
+
+                <div class="document-name">
+
+                    <h3>Birth Certificate</h3>
+
+                    <p>Upload your birth certificate</p>
+
+                    <span
+                        id="status-birth"
+                        class="status not-uploaded">
+
+                        ✕ Not Uploaded
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="birth"
+                    accept=".pdf,.jpg,.jpeg,.png">
+
+                <button
+                    class="upload-btn"
+                    onclick="uploadDocument('birth','status-birth')">
+
+                    Upload Document
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMMUNITY CERTIFICATE -->
+
+        <div class="document-card">
+
+            <div class="document-top">
+
+                <div class="document-icon">📜</div>
+
+                <div class="document-name">
+
+                    <h3>Community Certificate</h3>
+
+                    <p>Upload your community certificate</p>
+
+                    <span
+                        id="status-community"
+                        class="status not-uploaded">
+
+                        ✕ Not Uploaded
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="community"
+                    accept=".pdf,.jpg,.jpeg,.png">
+
+                <button
+                    class="upload-btn"
+                    onclick="uploadDocument('community','status-community')">
+
+                    Upload Document
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFORMATION -->
+
+        <div class="info-box">
+
+            <h3>🔐 Document Safety</h3>
+
+            <p>
+                This prototype only demonstrates document selection
+                and upload status on the student interface. Do not
+                upload real Aadhaar or bank documents into a public
+                demo website.
+            </p>
+
+            <p>
+                A production version should use secure authentication,
+                encrypted storage and appropriate access controls.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        function uploadDocument(fileId, statusId) {
+
+            const fileInput =
+                document.getElementById(fileId);
+
+            const status =
+                document.getElementById(statusId);
+
+
+            if (fileInput.files.length === 0) {
+
+                alert("Please select a document first.");
+
+                return;
+
+            }
+
+
+            const file =
+                fileInput.files[0];
+
+
+            status.textContent =
+                "✓ Uploaded: " + file.name;
+
+            status.className =
+                "status uploaded";
+
+
+            alert(
+                "Document selected successfully for this demo."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

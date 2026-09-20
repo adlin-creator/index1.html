@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartScholar - Deadline Calendar</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f8f4;
+            color: #222;
+        }
+
+
+        /* HEADER */
+
+        header {
+            background: #176b3a;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        header p {
+            margin: 7px 0 0;
+            font-size: 14px;
+        }
+
+
+        /* MAIN CONTAINER */
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 25px 20px;
+        }
+
+
+        /* TITLE */
+
+        .title-box {
+            background: white;
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .title-box h2 {
+            margin: 0 0 10px;
+            color: #176b3a;
+        }
+
+        .title-box p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+
+        /* UPCOMING */
+
+        .upcoming-title {
+            color: #176b3a;
+            margin-bottom: 15px;
+        }
+
+
+        /* DEADLINE CARD */
+
+        .deadline-card {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 15px;
+
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+
+        /* DATE BOX */
+
+        .date-box {
+            width: 75px;
+            height: 75px;
+            min-width: 75px;
+
+            background: #e8f5ec;
+
+            border-radius: 14px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            color: #176b3a;
+        }
+
+        .date-number {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .month {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+
+        /* INFORMATION */
+
+        .deadline-info {
+            flex: 1;
+        }
+
+        .deadline-info h3 {
+            margin: 0 0 8px;
+            color: #176b3a;
+            font-size: 18px;
+        }
+
+        .deadline-info p {
+            margin: 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+
+        /* DEADLINE TYPE */
+
+        .type {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 6px 10px;
+
+            border-radius: 8px;
+
+            background: #e8f5ec;
+
+            color: #176b3a;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* BUTTON */
+
+        .view-button {
+            padding: 10px 15px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #176b3a;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .view-button:hover {
+            background: #12582f;
+        }
+
+
+        /* BACK BUTTON */
+
+        .back-button {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            padding: 12px;
+
+            background: #176b3a;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #12582f;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .deadline-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .date-box {
+                width: 70px;
+                height: 70px;
+            }
+
+            .view-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="header-content">
+
+            <h1>🎓 SmartScholar</h1>
+
+            <p>
+                Smart Scholarship Assistance & Student Support
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="container">
+
+
+        <!-- TITLE -->
+
+        <div class="title-box">
+
+            <h2>📅 Deadline Calendar</h2>
+
+            <p>
+                Keep track of important scholarship deadlines
+                and complete your applications on time.
+            </p>
+
+        </div>
+
+
+
+        <!-- UPCOMING -->
+
+        <h2 class="upcoming-title">
+            📌 Upcoming
+        </h2>
+
+
+
+        <!-- SCHOLARSHIP A -->
+
+        <div class="deadline-card">
+
+            <div class="date-box">
+
+                <div class="date-number">
+                    20
+                </div>
+
+                <div class="month">
+                    OCT
+                </div>
+
+            </div>
+
+
+            <div class="deadline-info">
+
+                <h3>
+                    Scholarship A
+                </h3>
+
+                <p>
+                    Application closes:
+                    <strong>20 Oct</strong>
+                </p>
+
+                <span class="type">
+                    📝 Application Deadline
+                </span>
+
+            </div>
+
+
+            <button
+                class="view-button"
+                onclick="showDeadline('Scholarship A')">
+
+                View
+
+            </button>
+
+        </div>
+
+
+
+        <!-- SCHOLARSHIP B -->
+
+        <div class="deadline-card">
+
+            <div class="date-box">
+
+                <div class="date-number">
+                    28
+                </div>
+
+                <div class="month">
+                    OCT
+                </div>
+
+            </div>
+
+
+            <div class="deadline-info">
+
+                <h3>
+                    Scholarship B
+                </h3>
+
+                <p>
+                    Correction closes:
+                    <strong>28 Oct</strong>
+                </p>
+
+                <span class="type">
+                    ⚠️ Correction Deadline
+                </span>
+
+            </div>
+
+
+            <button
+                class="view-button"
+                onclick="showDeadline('Scholarship B')">
+
+                View
+
+            </button>
+
+        </div>
+
+
+
+        <!-- SCHOLARSHIP C -->
+
+        <div class="deadline-card">
+
+            <div class="date-box">
+
+                <div class="date-number">
+                    5
+                </div>
+
+                <div class="month">
+                    NOV
+                </div>
+
+            </div>
+
+
+            <div class="deadline-info">
+
+                <h3>
+                    Scholarship C
+                </h3>
+
+                <p>
+                    Verification deadline:
+                    <strong>5 Nov</strong>
+                </p>
+
+                <span class="type">
+                    🔍 Verification Deadline
+                </span>
+
+            </div>
+
+
+            <button
+                class="view-button"
+                onclick="showDeadline('Scholarship C')">
+
+                View
+
+            </button>
+
+        </div>
+
+
+
+        <!-- BACK TO HOME -->
+
+        <a
+            href="student-home.html"
+            class="back-button">
+
+            ← Back to Home
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function showDeadline(scholarship) {
+
+            alert(
+                scholarship +
+                " deadline details are displayed above."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SmartScholar - Manage Students</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f3f8f4;
+}
+
+header {
+    background: #176b3a;
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #176b3a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.student {
+    border-left: 5px solid #176b3a;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #176b3a;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>👨‍🎓 Manage Students</h1>
+</header>
+
+<div class="container">
+
+<a href="admin-home.html" class="back">← Back to Admin Dashboard</a>
+
+<div class="card student">
+    <h3>Student 001</h3>
+    <p><b>Name:</b> Arun Kumar</p>
+    <p><b>Course:</b> B.E Computer Science</p>
+    <p><b>Status:</b> Active</p>
+    <button onclick="alert('Student details opened')">View Details</button>
+</div>
+
+<div class="card student">
+    <h3>Student 002</h3>
+    <p><b>Name:</b> Priya</p>
+    <p><b>Course:</b> B.Sc Mathematics</p>
+    <p><b>Status:</b> Active</p>
+    <button onclick="alert('Student details opened')">View Details</button>
+</div>
+
+</div>
+
+</body>
+</html>

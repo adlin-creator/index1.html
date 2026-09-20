@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Scholar - Verification Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0fdf4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Card Container */
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+            border-top: 5px solid #10b981;
+        }
+
+        .dashboard-container {
+            max-width: 1000px;
+            display: none;
+        }
+
+        /* Branding Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .brand-title {
+            color: #065f46;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        h2 {
+            color: #047857;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #065f46;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            padding-right: 40px;
+            border: 1px solid #a7f3d0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 5px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Password Toggle Icon */
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 38px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 16px;
+        }
+
+        /* Form Options */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #065f46;
+            cursor: pointer;
+        }
+
+        .remember-me input {
+            width: auto;
+            accent-color: #10b981;
+        }
+
+        .forgot-link {
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #059669;
+        }
+
+        /* Dashboard Welcome Card */
+        .welcome-card {
+            background: linear-gradient(135deg, #065f46, #10b981);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .welcome-card h3 {
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .welcome-card p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Stats Section */
+        .stats-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background-color: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-box h4 {
+            color: #065f46;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .stat-box .number {
+            font-size: 22px;
+            font-weight: bold;
+            color: #047857;
+        }
+
+        /* Dashboard Sections */
+        .section-card {
+            background-color: #ffffff;
+            border: 1px solid #a7f3d0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            color: #065f46;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #ecfdf5;
+            padding-bottom: 6px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #ecfdf5;
+            color: #065f46;
+        }
+
+        /* Document Tags */
+        .doc-item {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin: 2px;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        .status-verified {
+            color: #059669;
+            font-weight: bold;
+        }
+
+        .status-rejected {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        /* Action Buttons */
+        .action-group {
+            display: flex;
+            gap: 4px;
+        }
+
+        .action-btn {
+            padding: 6px 10px;
+            font-size: 11px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .view-btn {
+            background-color: #0284c7;
+        }
+
+        .view-btn:hover {
+            background-color: #0369a1;
+        }
+
+        .approve-btn {
+            background-color: #10b981;
+        }
+
+        .approve-btn:hover {
+            background-color: #059669;
+        }
+
+        .request-btn {
+            background-color: #eab308;
+            color: #422006;
+        }
+
+        .request-btn:hover {
+            background-color: #ca8a04;
+        }
+
+        .logout-btn {
+            background-color: #ef4444;
+            margin-top: 10px;
+        }
+
+        .logout-btn:hover {
+            background-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Institute Login Page -->
+    <div class="container" id="loginPage">
+        <div class="brand-header">
+            <div class="brand-title">Smart Scholar</div>
+            <p class="subtitle">Scholarship Document Verification Portal</p>
+        </div>
+        
+        <h2>Institute Login</h2>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="instCode">Institute Code / Code ID</label>
+                <input type="text" id="instCode" placeholder="Enter Institute Code" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter Password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+            </div>
+
+            <!-- Remember Me & Forgot Password Options -->
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox" id="rememberMe"> Remember Me
+                </label>
+                <a href="#" class="forgot-link" onclick="forgotPassword()">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn">Login to Portal</button>
+        </form>
+    </div>
+
+    <!-- 2. Next Page: Verification Dashboard -->
+    <div class="container dashboard-container" id="dashboardPage">
+        <div class="brand-header">
+            <div class="brand-title">Smart Scholar</div>
+            <p class="subtitle">Scholarship Management System</p>
+        </div>
+
+        <!-- Welcome Section -->
+        <div class="welcome-card">
+            <h3>Welcome Back, Institutional Officer! 👋</h3>
+            <p>Smart Scholar போர்ட்டலுக்கு உங்களை அன்புடன் வரவேற்கிறோம். மாணவர்களின் ஆவணங்களைச் சரிபார்த்து விரைந்து ஒப்புதல் அளிக்கவும்.</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <h4>Total Applications</h4>
+                <div class="number">03</div>
+            </div>
+            <div class="stat-box">
+                <h4>Pending Verification</h4>
+                <div class="number" style="color: #d97706;">02</div>
+            </div>
+            <div class="stat-box">
+                <h4>Approved Applications</h4>
+                <div class="number" style="color: #059669;">01</div>
+            </div>
+        </div>
+
+        <!-- Student File Uploads & Applications Section -->
+        <div class="section-card">
+            <div class="section-title">Student Document Verification Section</div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Details</th>
+                        <th>Course</th>
+                        <th>Uploaded Documents</th>
+                        <th>Status</th>
+                        <th>Actions & Communication</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Anand</strong><br>
+                            <small style="color: #6b7280;">ID: STU202601</small>
+                        </td>
+                        <td>B.E. CSE</td>
+                        <td>
+                            <span class="doc-item">📄 Income Cert.pdf</span>
+                            <span class="doc-item">📄 Aadhaar.pdf</span>
+                            <span class="doc-item">📄 Marksheet.pdf</span>
+                        </td>
+                        <td><span class="status-pending" id="status-1">Pending</span></td>
+                        <td>
+                            <div class="action-group">
+                                <button class="action-btn view-btn" onclick="viewDocs('Anand')">View</button>
+                                <button class="action-btn approve-btn" onclick="verifyDoc('status-1', this)">Approve</button>
+                                <button class="action-btn request-btn" onclick="requestCorrection('Anand', 'status-1')">Request Edit</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Priya</strong><br>
+                            <small style="color: #6b7280;">ID: STU202602</small>
+                        </td>
+                        <td>B.Tech IT</td>
+                        <td>
+                            <span class="doc-item">📄 Income Cert.pdf</span>
+                            <span class="doc-item">📄 Community.pdf</span>
+                        </td>
+                        <td><span class="status-verified">Verified</span></td>
+                        <td>
+                            <div class="action-group">
+                                <button class="action-btn view-btn" onclick="viewDocs('Priya')">View</button>
+                                <button class="action-btn approve-btn" style="background-color: #9ca3af;" disabled>Approved</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Karthik</strong><br>
+                            <small style="color: #6b7280;">ID: STU202603</small>
+                        </td>
+                        <td>B.E. ECE</td>
+                        <td>
+                            <span class="doc-item">📄 Marksheet.pdf</span>
+                            <span class="doc-item">📄 Aadhaar.pdf</span>
+                        </td>
+                        <td><span class="status-pending" id="status-3">Pending</span></td>
+                        <td>
+                            <div class="action-group">
+                                <button class="action-btn view-btn" onclick="viewDocs('Karthik')">View</button>
+                                <button class="action-btn approve-btn" onclick="verifyDoc('status-3', this)">Approve</button>
+                                <button class="action-btn request-btn" onclick="requestCorrection('Karthik', 'status-3')">Request Edit</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button class="btn logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // Password Show / Hide Functionality
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.innerText = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.innerText = '👁️';
+            }
+        }
+
+        // Forgot Password Action
+        function forgotPassword() {
+            alert("கடவுச்சொல்லை மீட்டமைக்க (Reset Password) உங்கள் மின்னஞ்சலுக்கு இணைப்பு அனுப்பப்படும். தயவுசெய்து உங்கள் நிர்வாகியைத் தொடர்பு கொள்ளவும்.");
+        }
+
+        // Login Submit Handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const instCode = document.getElementById('instCode').value;
+            const password = document.getElementById('password').value;
+
+            if (instCode !== "" && password !== "") {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboardPage').style.display = 'block';
+            } else {
+                alert('தயவுசெய்து அனைத்து விவரங்களையும் சரியாக உள்ளிடவும்.');
+            }
+        });
+
+        // View Uploaded Files Action
+        function viewDocs(studentName) {
+            alert(studentName + " பதிவேற்றிய ஆவணங்கள் திறக்கப்படுகின்றன...");
+        }
+
+        // Document Approve Action
+        function verifyDoc(statusId, btnElement) {
+            const statusElement = document.getElementById(statusId);
+            statusElement.innerText = "Verified";
+            statusElement.className = "status-verified";
+            
+            btnElement.innerText = "Approved";
+            btnElement.style.backgroundColor = "#9ca3af";
+            btnElement.disabled = true;
+
+            alert("மாணவரின் ஆவணங்கள் சரிபார்க்கப்பட்டு Approve செய்யப்பட்டது!");
+        }
+
+        // Request Correction Feature
+        function requestCorrection(studentName, statusId) {
+            const reason = prompt(studentName + " -க்கான ஆவணத்தில் உள்ள திருத்தத்தைக் குறிப்பிடவும் (Remark/Correction Note for Student):");
+            if (reason && reason.trim() !== "") {
+                const statusElement = document.getElementById(statusId);
+                statusElement.innerText = "Re-upload Requested";
+                statusElement.className = "status-rejected";
+
+                alert("திருத்தக் குறிப்பு (" + reason + ") " + studentName + "-ன் மின்னஞ்சல்/போர்ட்டலுக்கு வெற்றிகரமாக அனுப்பப்பட்டது.");
+            }
+        }
+
+        // Logout Handler
+        function logout() {
+            document.getElementById('dashboardPage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('loginForm').reset();
+            
+            document.getElementById('password').type = 'password';
+            document.querySelector('.toggle-password').innerText = '👁️';
+        }
+    </script>
+
+</body>
+</html>

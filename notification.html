@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartScholar - Notifications</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f8f4;
+            color: #222;
+        }
+
+
+        /* HEADER */
+
+        header {
+            background: #176b3a;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        header p {
+            margin: 7px 0 0;
+            font-size: 14px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            padding: 25px 20px;
+        }
+
+
+        /* TITLE */
+
+        .title-box {
+            background: white;
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .title-box h2 {
+            margin: 0 0 8px;
+            color: #176b3a;
+        }
+
+        .title-box p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+
+        /* NOTIFICATION */
+
+        .notification {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+            transition: 0.2s;
+        }
+
+        .notification:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* ICON */
+
+        .notification-icon {
+            font-size: 30px;
+            min-width: 40px;
+            text-align: center;
+        }
+
+
+        /* TEXT */
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+        }
+
+        .notification-content p {
+            margin: 0;
+            font-size: 13px;
+            color: #777;
+        }
+
+
+        /* STATUS */
+
+        .success {
+            border-left: 5px solid #28a745;
+        }
+
+        .warning {
+            border-left: 5px solid #f0ad00;
+        }
+
+        .info {
+            border-left: 5px solid #2196f3;
+        }
+
+
+        /* NEW LABEL */
+
+        .new {
+            background: #176b3a;
+            color: white;
+            padding: 5px 8px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+
+        /* BACK BUTTON */
+
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            padding: 12px;
+
+            background: #176b3a;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 10px;
+
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #12582f;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .notification {
+                align-items: flex-start;
+            }
+
+            .new {
+                align-self: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="header-content">
+
+            <h1>🎓 SmartScholar</h1>
+
+            <p>
+                Smart Scholarship Assistance & Student Support
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="container">
+
+
+        <!-- TITLE -->
+
+        <div class="title-box">
+
+            <h2>🔔 Smart Notifications</h2>
+
+            <p>
+                Stay updated about your scholarship application,
+                documents and important deadlines.
+            </p>
+
+        </div>
+
+
+
+        <!-- NOTIFICATION 1 -->
+
+        <div class="notification success">
+
+            <div class="notification-icon">
+                🔔
+            </div>
+
+            <div class="notification-content">
+
+                <h3>
+                    Your institute verification is completed.
+                </h3>
+
+                <p>
+                    Your application has successfully passed
+                    institute-level verification.
+                </p>
+
+            </div>
+
+            <span class="new">
+                NEW
+            </span>
+
+        </div>
+
+
+
+        <!-- NOTIFICATION 2 -->
+
+        <div class="notification warning">
+
+            <div class="notification-icon">
+                ⚠️
+            </div>
+
+            <div class="notification-content">
+
+                <h3>
+                    A document requires correction.
+                </h3>
+
+                <p>
+                    Please check your Income Certificate and
+                    upload the corrected document.
+                </p>
+
+            </div>
+
+            <span class="new">
+                ACTION
+            </span>
+
+        </div>
+
+
+
+        <!-- NOTIFICATION 3 -->
+
+        <div class="notification warning">
+
+            <div class="notification-icon">
+                📅
+            </div>
+
+            <div class="notification-content">
+
+                <h3>
+                    Scholarship correction deadline is approaching.
+                </h3>
+
+                <p>
+                    Make sure required corrections are completed
+                    before the deadline.
+                </p>
+
+            </div>
+
+            <span class="new">
+                ALERT
+            </span>
+
+        </div>
+
+
+
+        <!-- NOTIFICATION 4 -->
+
+        <div class="notification info">
+
+            <div class="notification-icon">
+                ✅
+            </div>
+
+            <div class="notification-content">
+
+                <h3>
+                    Application moved to authority verification.
+                </h3>
+
+                <p>
+                    Your application has been forwarded for
+                    authority-level verification.
+                </p>
+
+            </div>
+
+            <span class="new">
+                UPDATED
+            </span>
+
+        </div>
+
+
+
+        <!-- BACK -->
+
+        <a
+            href="student-home.html"
+            class="back-button">
+
+            ← Back to Home
+
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

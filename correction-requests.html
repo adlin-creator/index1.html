@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SmartScholar - Correction Requests</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f3f8f4;
+}
+
+header {
+    background: #176b3a;
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.back {
+    color: #176b3a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-top: 18px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+button {
+    background: #176b3a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚠️ Correction Requests</h1>
+</header>
+
+<div class="container">
+
+<a href="admin-home.html" class="back">
+    ← Back to Admin Dashboard
+</a>
+
+<div class="card">
+    <h3>Correction Request #CR001</h3>
+
+    <p><b>Student:</b> Arun Kumar</p>
+    <p><b>Issue:</b> Bank account document needs correction.</p>
+    <p><b>Status:</b> Pending</p>
+
+    <button onclick="alert('Correction request viewed')">
+        View Request
+    </button>
+</div>
+
+<div class="card">
+    <h3>Correction Request #CR002</h3>
+
+    <p><b>Student:</b> Priya</p>
+    <p><b>Issue:</b> Community certificate information needs correction.</p>
+    <p><b>Status:</b> Pending</p>
+
+    <button onclick="alert('Correction request viewed')">
+        View Request
+    </button>
+</div>
+
+</div>
+
+</body>
+</html>

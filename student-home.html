@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartScholar - Student Home</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            margin: 0;
+            background: #f3f8f4;
+            color: #222;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #176b3a;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+
+        .header-content {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+
+        header h1 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+
+        header p {
+            margin: 7px 0 0;
+            font-size: 14px;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+
+        /* ================= WELCOME ================= */
+
+        .welcome {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+
+        .welcome h2 {
+            margin-top: 0;
+            color: #176b3a;
+        }
+
+
+        .welcome p {
+            margin-bottom: 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+
+        /* ================= STATUS ================= */
+
+        .status-box {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+
+        .status-box h2 {
+            color: #176b3a;
+            margin-top: 0;
+        }
+
+
+        .status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+
+        .step {
+            text-align: center;
+            flex: 1;
+        }
+
+
+        .circle {
+            width: 42px;
+            height: 42px;
+            margin: auto;
+            border-radius: 50%;
+            background: #e8f5ec;
+            color: #176b3a;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+
+        .step.active .circle {
+            background: #176b3a;
+            color: white;
+        }
+
+
+        .step p {
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+
+        /* ================= SECTION TITLE ================= */
+
+        .section-title {
+            color: #176b3a;
+            margin-top: 25px;
+        }
+        /* ================= DOCUMENT VAULT ================= */
+
+          .vault-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.document-card {
+    cursor: pointer;
+}
+
+.vault-link:hover {
+    text-decoration: none;
+}
+
+        /* ================= CARDS ================= */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+
+            text-decoration: none;
+            color: #222;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+
+        .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+
+        .card h3 {
+            margin: 5px 0;
+            color: #176b3a;
+        }
+
+
+        .card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+
+        /* ================= NOTIFICATION ================= */
+
+        .notification {
+            background: #e8f5ec;
+            padding: 18px;
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+
+        .notification h3 {
+            color: #176b3a;
+            margin-top: 0;
+        }
+
+
+        .notification-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+
+        /* ================= DEADLINE ================= */
+
+        .deadline {
+            background: white;
+            padding: 18px;
+            border-radius: 16px;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+            margin-top: 20px;
+        }
+
+
+        .deadline h3 {
+            color: #176b3a;
+            margin-top: 0;
+        }
+
+
+        .deadline-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+
+        /* ================= PROFILE ================= */
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+
+        .profile-card {
+            background: white;
+            padding: 18px;
+            border-radius: 16px;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+
+        .profile-card h3 {
+            color: #176b3a;
+            margin-top: 0;
+        }
+
+
+        .profile-card p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .profile-button {
+            padding: 10px 16px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: #176b3a;
+            color: white;
+
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+
+        .profile-button:hover {
+            background: #12582f;
+        }
+
+
+        /* ================= LOGOUT ================= */
+
+        .logout {
+            display: block;
+
+            width: 100%;
+            margin-top: 25px;
+
+            padding: 14px;
+
+            background: #176b3a;
+            color: white;
+
+            text-align: center;
+            text-decoration: none;
+
+            border-radius: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .logout:hover {
+            background: #12582f;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
+
+
+            .status {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+
+            .step {
+                display: flex;
+                align-items: center;
+
+                gap: 12px;
+
+                text-align: left;
+            }
+
+
+            .circle {
+                margin: 0;
+                min-width: 42px;
+            }
+           
+        }
+
+      
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="header-content">
+
+            <h1>🎓 SmartScholar</h1>
+
+            <p>
+                Smart Scholarship Assistance & Student Support
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <div class="container">
+
+
+        <!-- ================= WELCOME ================= -->
+
+        <div class="welcome">
+
+            <h2>Welcome, Student 👋</h2>
+
+            <p>
+                Find suitable scholarships, check your documents,
+                track applications and get guidance throughout your
+                scholarship journey.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= APPLICATION STATUS ================= -->
+
+        <div class="status-box">
+
+            <h2>📊 Application Status</h2>
+
+
+            <div class="status">
+
+
+                <div class="step active">
+
+                    <div class="circle">
+                        1
+                    </div>
+
+                    <p>
+                        Application<br>
+                        Submitted
+                    </p>
+
+                </div>
+
+
+
+                <div class="step active">
+
+                    <div class="circle">
+                        2
+                    </div>
+
+                    <p>
+                        Institute<br>
+                        Verification
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="circle">
+                        3
+                    </div>
+
+                    <p>
+                        Authority<br>
+                        Verification
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="circle">
+                        4
+                    </div>
+
+                    <p>
+                        Final<br>
+                        Decision
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= MAIN FEATURES ================= -->
+
+        <h2 class="section-title">
+            🌟 SmartScholar Services
+        </h2>
+
+
+
+        <div class="grid">
+
+
+            <!-- FIND SCHOLARSHIP -->
+
+            <a href="find-scholarship.html"
+               class="card">
+
+                <div class="icon">
+                    🔎
+                </div>
+
+                <h3>
+                    Find My Scholarships
+                </h3>
+
+                <p>
+                    Discover scholarships based on your education,
+                    course, income, category and state.
+                </p>
+
+            </a>
+
+
+
+            <!-- DOCUMENT CHECK -->
+
+            <a href="document-check.html"
+               class="card">
+
+                <div class="icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Document Check
+                </h3>
+
+                <p>
+                    Upload your documents and perform a preliminary
+                    document pre-check before applying.
+                </p>
+
+            </a>
+
+
+
+      
+        <!--VERIFICATION TRACKER-->
+<a href="Verification-tracker.html" class="card">
+
+    <div class="icon">📍</div>
+
+    <h3>Verification Tracker</h3>
+
+    <p>
+        Track the progress of institute and authority
+        verification.
+    </p>
+
+</a>
+
+            <!-- CORRECTIONS CENTER -->
+            <a href="Correction-center.html" class="card">
+
+    <div class="icon">✏️</div>
+
+    <h3>Correction Center</h3>
+
+    <p>
+        Correct and re-upload documents that require changes.
+    </p>
+
+</a>
+  
+
+
+
+            <!-- MY DOCUMENTS -->
+
+            <a href="document.html"
+               class="card">
+
+                <div class="icon">
+                    📁
+                </div>
+
+                <h3>
+                    My Documents
+                </h3>
+
+                <p>
+                    Access your uploaded documents and check their
+                    availability and verification status.
+                </p>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- ================= NOTIFICATIONS ================= -->
+
+        <a href="notification.html"
+           class="notification-link">
+
+            <div class="notification">
+
+                <h3>
+                    🔔 Notifications
+                </h3>
+
+                <p>
+                    You have new scholarship-related updates.
+                </p>
+
+                <p>
+                    • Document verification status updated.
+                </p>
+
+                <p>
+                    • New scholarships may be available for your profile.
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- ================= DEADLINES ================= -->
+
+        <a href="deadline.html"
+           class="deadline-link">
+
+            <div class="deadline">
+
+                <h3>
+                    📅 Upcoming Deadlines
+                </h3>
+
+                <p>
+                    Keep track of important scholarship application
+                    deadlines.
+                </p>
+
+                <p>
+
+                    <strong>
+                        Scholarship applications:
+                    </strong>
+
+                    Check the respective scholarship deadline.
+
+                </p>
+
+            </div>
+
+        </a>         
+ 
+        <!-- ================= PROFILE ================= -->
+
+        <div class="profile-section">
+
+
+            <!-- PROFILE -->
+
+            <div class="profile-card">
+
+                <h3>
+                    👤 My Profile
+                </h3>
+
+                <p>
+                    View and update your student information,
+                    education details and contact information.
+                </p>
+
+
+               <button
+    class="profile-button"
+    onclick="window.location.href='profile.html'">
+
+    View Profile
+
+</button>
+
+            </div>
+     
+    <!----DOCUMENT VAULT---->
+   <a href="document-vault.html" class="vault-link">
+    <div class="document-card">
+        <div class="folder-icon"> 📁</div>
+        <h2>My Document Vault</h2>
+        <p>
+            Upload and manage your important scholarship document in on secure place
+        </p>
+    </div>
+   </a>
+        </div>
+
+
+
+        <!-- ================= LOGOUT ================= -->
+
+        <a href="student-login.html"
+           class="logout">
+
+            🚪 Logout
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function showMessage(feature) {
+
+            alert(
+                feature +
+                " is available in the SmartScholar student dashboard."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartScholar - Correction Center</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f8f4;
+            color: #222;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #176b3a;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        header p {
+            margin: 7px 0 0;
+            font-size: 14px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 25px 20px;
+        }
+
+        /* TITLE */
+
+        .title-box {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .title-box h2 {
+            color: #176b3a;
+            margin-top: 0;
+        }
+
+        .title-box p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* CORRECTION ALERT */
+
+        .alert {
+            background: #fff4d6;
+            border-left: 5px solid #f0ad00;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .alert h3 {
+            margin: 0 0 7px;
+            color: #b07800;
+        }
+
+        .alert p {
+            margin: 0;
+            color: #555;
+        }
+
+        /* DOCUMENT CARD */
+
+        .document-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .document-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .document-name {
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .reason {
+            color: #777;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .verified {
+            color: #198754;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .correction {
+            color: #d98b00;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* BUTTON */
+
+        .upload-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #176b3a;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .upload-btn:hover {
+            background: #12582f;
+        }
+
+        /* BACK BUTTON */
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #176b3a;
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .document-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="header-content">
+
+            <h1>🎓 SmartScholar</h1>
+
+            <p>
+                Smart Scholarship Assistance & Student Support
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <div class="container">
+
+        <!-- TITLE -->
+
+        <div class="title-box">
+
+            <h2>⚠️ Correction Center</h2>
+
+            <p>
+                Review your documents and correct any issues
+                before final verification.
+            </p>
+
+        </div>
+
+
+        <!-- ALERT -->
+
+        <div class="alert">
+
+            <h3>⚠️ Correction Required</h3>
+
+            <p>
+                One or more documents need correction before
+                your application can proceed.
+            </p>
+
+        </div>
+
+
+        <!-- INCOME CERTIFICATE -->
+
+        <div class="document-card">
+
+            <div class="document-row">
+
+                <div>
+
+                    <div class="document-name">
+                        📄 Income Certificate
+                    </div>
+
+                    <div class="reason">
+                        Reason: Information needs correction
+                    </div>
+
+                </div>
+
+                <div class="correction">
+                    ⚠️ Correction Required
+                </div>
+
+            </div>
+
+            <button
+                class="upload-btn"
+                onclick="correctDocument('Income Certificate')">
+
+                Correct & Re-upload
+
+            </button>
+
+        </div>
+
+
+        <!-- MARKSHEET -->
+
+        <div class="document-card">
+
+            <div class="document-row">
+
+                <div>
+
+                    <div class="document-name">
+                        📜 Marksheet
+                    </div>
+
+                </div>
+
+                <div class="verified">
+                    ✓ Verified
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BANK DOCUMENT -->
+
+        <div class="document-card">
+
+            <div class="document-row">
+
+                <div>
+
+                    <div class="document-name">
+                        🏦 Bank Document
+                    </div>
+
+                </div>
+
+                <div class="verified">
+                    ✓ Verified
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <a href="student-home.html" class="back-btn">
+            ← Back to Home
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function correctDocument(documentName) {
+
+            alert(
+                "Please select the corrected " +
+                documentName +
+                " and re-upload it."
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

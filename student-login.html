@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartScholar - Student Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e8f5e9, #f5fff7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 50px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #176b3a;
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 22px;
+            font-size: 22px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #176b3a;
+            box-shadow: 0 0 5px rgba(23, 107, 58, 0.2);
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 45px;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .forgot {
+            text-align: right;
+            margin-top: -8px;
+            margin-bottom: 20px;
+        }
+
+        .forgot a {
+            color: #176b3a;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .forgot a:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #176b3a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #0f542c;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 22px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .register a {
+            color: #176b3a;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register a:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 11px;
+            background: white;
+            color: #176b3a;
+            border: 1px solid #176b3a;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: #e8f5ec;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 500px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">🎓</div>
+
+        <h1>SmartScholar</h1>
+
+        <p class="subtitle">
+            Student Scholarship Document Verification Portal
+        </p>
+
+        <h2>👨‍🎓 Student Login</h2>
+
+        <form onsubmit="studentLogin(event)">
+
+            <!-- Register number -->
+            <div class="input-group">
+                <label for="studend id">
+                   Register Number
+                </label>
+
+                <input
+                    type="text"
+                    id="studentId"
+                    placeholder="Enter Register Number"
+                    required>
+            </div>
+
+            <!-- Email  -->
+            <div class="input-group">
+                <label for="contact">
+                    Registered Email 
+                </label>
+
+                <input
+                    type="text"
+                    id="contact"
+                    placeholder="Enter email"
+                    required>
+            </div>
+
+            <!-- Password -->
+            <div class="input-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        required>
+
+                    <span
+                        class="show-password"
+                        onclick="togglePassword()">
+                        👁️
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Forgot Password -->
+            <div class="forgot">
+                <a href="forgot-password.html">
+                    Forgot Password?
+                </a>
+            </div>
+
+            <!-- Login -->
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <!-- Message -->
+        <div id="message" class="message"></div>
+
+        <!-- Register -->
+        <div class="register">
+            New Student?
+            <a href="student-register.html">
+                Create Account
+            </a>
+        </div>
+
+        <!-- Back -->
+        <button
+            class="back-btn"
+            onclick="window.location.href='index.html'">
+            ← Back to Who are you?
+        </button>
+
+    </div>
+
+
+    <script>
+
+        // Show / Hide Password
+        function togglePassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const icon =
+                document.querySelector(".show-password");
+
+            if (password.type === "password") {
+
+                password.type = "text";
+                icon.textContent = "🙈";
+
+            } else {
+
+                password.type = "password";
+                icon.textContent = "👁️";
+
+            }
+        }
+
+
+        // Student Login
+        function studentLogin(event) {
+
+            event.preventDefault();
+
+            const studentId =
+                document.getElementById("studentId").value.trim();
+
+          
+            const password =
+                document.getElementById("password").value.trim();
+
+            const message =
+                document.getElementById("message");
+
+
+            if (studentId === "" ||
+                contact === "" ||
+                password === "") {
+
+                message.style.color = "red";
+                message.textContent =
+                    "Please fill all the fields.";
+
+                return;
+            }
+
+
+            /*
+             * Demo Login
+             *
+             * This is only for the frontend prototype.
+             * Later, this can be connected to a backend
+             * for real authentication.
+             */
+
+            message.style.color = "#176b3a";
+            message.textContent =
+                "Login successful!";
+
+
+            // Go to Student Dashboard
+            setTimeout(function () {
+
+                window.location.href =
+                    "student-home.html";
+
+            }, 1000);
+        }
+
+    </script>
+
+</body>
+
+</html>

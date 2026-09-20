@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartScholar - Find My Scholarships</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f8f4;
+            color: #222;
+        }
+
+        header {
+            background: #176b3a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 25px 25px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #176b3a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .search-box h2 {
+            color: #176b3a;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        .other-input {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .find-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: #176b3a;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .find-btn:hover {
+            background: #12582f;
+        }
+
+        #results {
+            margin-top: 25px;
+        }
+
+        .result-title {
+            color: #176b3a;
+        }
+
+        .scholarship-card {
+            background: white;
+            margin-top: 15px;
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .scholarship-card h3 {
+            margin-top: 0;
+            color: #176b3a;
+        }
+
+        .details {
+            background: #e8f5ec;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 12px 0;
+        }
+
+        .details p {
+            margin: 6px 0;
+        }
+
+        .check-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #e8f5ec;
+            color: #176b3a;
+            text-decoration: none;
+            border-radius: 9px;
+            font-weight: bold;
+        }
+
+        .no-result {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>🎓 SmartScholar</h1>
+
+    <p>Find Scholarships That Match Your Profile</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- Back to Student Home -->
+
+    <a href="student-home.html" class="back-btn">
+        ← Back to Student Home
+    </a>
+
+
+    <div class="search-box">
+
+        <h2>🔎 Find My Scholarships</h2>
+
+        <p>
+            Enter your details to find scholarships that may
+            match your eligibility.
+        </p>
+
+
+        <!-- Education -->
+
+        <label>Education Level</label>
+
+        <select id="education">
+
+            <option value="">Select Education Level</option>
+
+            <option value="school">
+                School
+            </option>
+
+            <option value="ug">
+                Undergraduate
+            </option>
+
+            <option value="pg">
+                Postgraduate
+            </option>
+
+            <option value="phd">
+                PhD
+            </option>
+
+        </select>
+
+
+        <!-- Course -->
+
+        <label>Course / Stream</label>
+
+        <select id="course" onchange="courseChanged()">
+
+            <option value="">
+                Select Course
+            </option>
+
+            <option value="engineering">
+                Engineering
+            </option>
+
+            <option value="arts">
+                Arts & Science
+            </option>
+
+            <option value="medical">
+                Medical
+            </option>
+
+            <option value="management">
+                Management
+            </option>
+
+            <option value="law">
+                Law
+            </option>
+
+            <option value="other">
+                Other
+            </option>
+
+        </select>
+
+
+        <!-- Other Course Input -->
+
+        <input
+            type="text"
+            id="otherCourse"
+            class="other-input"
+            placeholder="Enter your course / stream"
+        >
+
+
+        <!-- Income -->
+
+        <label>Annual Family Income</label>
+
+        <select id="income">
+
+            <option value="">
+                Select Income Range
+            </option>
+
+            <option value="below1">
+                Below ₹1 Lakh
+            </option>
+
+            <option value="1to2">
+                ₹1 - ₹2 Lakhs
+            </option>
+
+            <option value="2to5">
+                ₹2 - ₹5 Lakhs
+            </option>
+
+            <option value="above5">
+                Above ₹5 Lakhs
+            </option>
+
+        </select>
+
+
+        <!-- Category -->
+
+        <label>Category</label>
+
+        <select id="category" onchange="categoryChanged()">
+
+            <option value="">
+                Select Category
+            </option>
+
+            <option value="general">
+                General
+            </option>
+
+            <option value="obc">
+                OBC
+            </option>
+
+            <option value="sc">
+                SC
+            </option>
+
+            <option value="st">
+                ST
+            </option>
+
+            <option value="other">
+                Other
+            </option>
+
+        </select>
+
+
+        <!-- Other Category Input -->
+
+        <input
+            type="text"
+            id="otherCategory"
+            class="other-input"
+            placeholder="Enter your category"
+        >
+
+
+        <!-- State -->
+
+        <label>State</label>
+
+        <select id="state">
+
+            <option value="">
+                Select State
+            </option>
+
+            <option value="tamilnadu">
+                Tamil Nadu
+            </option>
+
+            <option value="kerala">
+                Kerala
+            </option>
+
+            <option value="karnataka">
+                Karnataka
+            </option>
+
+            <option value="andhra">
+                Andhra Pradesh
+            </option>
+
+            <option value="telangana">
+                Telangana
+            </option>
+
+            <option value="other">
+                Other State
+            </option>
+
+        </select>
+
+
+        <!-- Find Button -->
+
+        <button
+            class="find-btn"
+            onclick="findScholarships()">
+
+            🔍 Find Matching Scholarships
+
+        </button>
+
+    </div>
+
+
+    <!-- Results -->
+
+    <div id="results"></div>
+
+
+</div>
+
+
+<script>
+
+
+/* --------------------------------
+   SHOW OTHER COURSE INPUT
+-------------------------------- */
+
+function courseChanged() {
+
+    const course =
+        document.getElementById("course").value;
+
+    const otherCourse =
+        document.getElementById("otherCourse");
+
+
+    if (course === "other") {
+
+        otherCourse.style.display = "block";
+
+        otherCourse.focus();
+
+    } else {
+
+        otherCourse.style.display = "none";
+
+        otherCourse.value = "";
+
+    }
+
+}
+
+
+/* --------------------------------
+   SHOW OTHER CATEGORY INPUT
+-------------------------------- */
+
+function categoryChanged() {
+
+    const category =
+        document.getElementById("category").value;
+
+    const otherCategory =
+        document.getElementById("otherCategory");
+
+
+    if (category === "other") {
+
+        otherCategory.style.display = "block";
+
+        otherCategory.focus();
+
+    } else {
+
+        otherCategory.style.display = "none";
+
+        otherCategory.value = "";
+
+    }
+
+}
+
+
+/* --------------------------------
+   FIND SCHOLARSHIPS
+-------------------------------- */
+
+function findScholarships() {
+
+    const education =
+        document.getElementById("education").value;
+
+    const course =
+        document.getElementById("course").value;
+
+    const income =
+        document.getElementById("income").value;
+
+    const category =
+        document.getElementById("category").value;
+
+    const state =
+        document.getElementById("state").value;
+
+
+    const otherCourse =
+        document.getElementById("otherCourse").value.trim();
+
+    const otherCategory =
+        document.getElementById("otherCategory").value.trim();
+
+
+    /* Check Course */
+
+    if (course === "") {
+
+        alert("Please select your course.");
+
+        return;
+
+    }
+
+
+    if (
+        course === "other" &&
+        otherCourse === ""
+    ) {
+
+        alert("Please enter your course / stream.");
+
+        return;
+
+    }
+
+
+    /* Check Category */
+
+    if (category === "") {
+
+        alert("Please select your category.");
+
+        return;
+
+    }
+
+
+    if (
+        category === "other" &&
+        otherCategory === ""
+    ) {
+
+        alert("Please enter your category.");
+
+        return;
+
+    }
+
+
+    /* Check remaining fields */
+
+    if (
+        education === "" ||
+        income === "" ||
+        state === ""
+    ) {
+
+        alert("Please select all the required details.");
+
+        return;
+
+    }
+
+
+    let results = [];
+
+
+    /* --------------------------------
+       DEMO SCHOLARSHIP MATCHING
+    -------------------------------- */
+
+
+    if (
+        education === "ug" &&
+        course === "engineering"
+    ) {
+
+        results.push({
+
+            name: "Technical Education Scholarship",
+
+            amount: "Up to ₹50,000",
+
+            eligibility:
+                "For eligible undergraduate students pursuing technical education.",
+
+            documents:
+                "Income Certificate, Community Certificate, Bonafide Certificate",
+
+            deadline:
+                "Check current application deadline"
+
+        });
+
+    }
+
+
+    if (
+        income === "below1" ||
+        income === "1to2"
+    ) {
+
+        results.push({
+
+            name: "Merit & Means Based Scholarship",
+
+            amount:
+                "Financial assistance based on eligibility",
+
+            eligibility:
+                "For students meeting specified academic and family-income conditions.",
+
+            documents:
+                "Income Certificate, Mark Sheets, Bonafide Certificate",
+
+            deadline:
+                "Check current application deadline"
+
+        });
+
+    }
+
+
+    if (
+        category === "sc" ||
+        category === "st" ||
+        category === "obc"
+    ) {
+
+        results.push({
+
+            name: "Category Based Student Scholarship",
+
+            amount:
+                "Amount depends on scholarship scheme",
+
+            eligibility:
+                "For eligible students belonging to specified communities.",
+
+            documents:
+                "Community Certificate, Income Certificate, Mark Sheet",
+
+            deadline:
+                "Check current application deadline"
+
+        });
+
+    }
+
+
+    if (state === "tamilnadu") {
+
+        results.push({
+
+            name: "State Student Scholarship",
+
+            amount:
+                "As per applicable scheme",
+
+            eligibility:
+                "For eligible students studying in Tamil Nadu.",
+
+            documents:
+                "Student ID, Income Certificate, Bonafide Certificate",
+
+            deadline:
+                "Check current application deadline"
+
+        });
+
+    }
+
+
+    displayResults(results);
+
+}
+
+
+/* --------------------------------
+   DISPLAY RESULTS
+-------------------------------- */
+
+function displayResults(results) {
+
+    const resultsDiv =
+        document.getElementById("results");
+
+
+    if (results.length === 0) {
+
+        resultsDiv.innerHTML = `
+
+            <div class="no-result">
+
+                <h3>
+                    😔 No Matching Scholarships Found
+                </h3>
+
+                <p>
+                    Try changing your eligibility details
+                    and search again.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <h2 class="result-title">
+
+            🎯 Scholarships Matching Your Profile
+
+        </h2>
+
+        <p>
+            We found ${results.length}
+            possible scholarship match(es).
+        </p>
+
+    `;
+
+
+    results.forEach(function(scholarship) {
+
+        html += `
+
+            <div class="scholarship-card">
+
+                <h3>
+                    🎓 ${scholarship.name}
+                </h3>
+
+                <div class="details">
+
+                    <p>
+                        <strong>
+                            💰 Financial Assistance:
+                        </strong>
+
+                        ${scholarship.amount}
+
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            ✅ Eligibility:
+                        </strong>
+
+                        ${scholarship.eligibility}
+
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            📄 Important Documents:
+                        </strong>
+
+                        ${scholarship.documents}
+
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            📅 Deadline:
+                        </strong>
+
+                        ${scholarship.deadline}
+
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="document-check.html"
+                    class="check-btn">
+
+                    📄 Check Documents
+
+                </a>
+
+            </div>
+
+        `;
+
+    });
+
+
+    resultsDiv.innerHTML = html;
+
+
+    /* Scroll to results */
+
+    resultsDiv.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+
+</body>
+
+</html>
